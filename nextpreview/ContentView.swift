@@ -9,16 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            PreviewPlayerView()
+                .tabItem {
+                    Label("今日の予告", systemImage: "play.tv.fill")
+                }
+
+            TaskListView()
+                .tabItem {
+                    Label("タスク", systemImage: "checklist")
+                }
+
+            SettingsView()
+                .tabItem {
+                    Label("設定", systemImage: "gear")
+                }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: TaskItem.self, inMemory: true)
 }
